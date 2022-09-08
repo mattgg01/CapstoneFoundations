@@ -4,11 +4,10 @@ const app = express()
 const cors = require('cors')
 const {SERVER_PORT} = process.env
 const {seed} = require('./seed.js')
-const {getClientReservations, requestReservation} = require('./controller.js')
+const {getClientReservations, requestReservation, deleteReservation} = require('./controller.js')
 
 app.use(express.json())
 app.use(cors())
-
 
 
 app.post('/seed', seed)
@@ -17,7 +16,7 @@ app.post('/seed', seed)
 // RESERVATIONS
 app.get('/reservation', getClientReservations)
 app.post('/reservation', requestReservation)
-
+app.delete(`/reservation/:id`, deleteReservation)
 
 // app.get('/user', getUserInfo)
 // app.put('/user', updateUserInfo)

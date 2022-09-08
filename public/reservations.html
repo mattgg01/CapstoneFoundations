@@ -18,19 +18,19 @@
         <form id="reservationForm">
 			<h2>Personal Information</h2>
 			<label>First Name</label>
-          	<input type="text" placeholder="John"/>
+          	<input id="first-name" type="text" placeholder="John"/>
 			<label>Last Name</label>
-			<input type="text" placeholder="Doe"/>
+			<input id="last-name" type="text" placeholder="Doe"/>
 			<!-- <label>Date Of Birth</label> -->
 			<!-- <input type="date"> -->
 			<label>Email Address</label>
-			<input type="text" placeholder="you@mail.com"/>
+			<input id="email"type="text" placeholder="you@mail.com"/>
 			<label>Phone Number</label>
-			<input type="text" placeholder="(800) 222-9999"/>
+			<input id="phone"type="text" placeholder="(800) 222-9999"/>
 			<label>Street Address</label>
-			<input type="text" placeholder="222 Robbery Lane"/>
+			<input id="address" type="text" placeholder="222 Robbery Lane"/>
 			<label>State</label>
-			<select>
+			<select id="state">
 				<option value="AL">Alabama</option>
 				<option value="AK">Alaska</option>
 				<option value="AZ">Arizona</option>
@@ -84,7 +84,7 @@
 				<option value="WY">Wyoming</option>
 			</select>
 			<h2>Reservation Date</h2>
-			<input type="date" name="reservation-date">
+			<input type="date" id="reservation-date">
 			<button>Submit Reservation</button>
 		</form>
 		</div>
@@ -96,5 +96,4 @@
 <br>
 <script src="../node_modules/axios/dist/axios.min.js"></script>
 <script src="reservations.js"> </script>
-
 </html>
