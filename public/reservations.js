@@ -18,6 +18,7 @@ let notSelectableDates = []
 
 function createDisplayDate(date){
     const options = { weekday: 'long', year: 'numeric', month: 'long', day: 'numeric' };
+    options.timeZone = 'UTC'
     const reqDate = new Date(date)
     const reqDateDisplay = reqDate.toLocaleDateString('en-US', options)
     return `${reqDateDisplay}`
@@ -25,7 +26,7 @@ function createDisplayDate(date){
 
 form.addEventListener('submit', (e) => {
     e.preventDefault()
-
+    
     let resRequest = {
         firstName: firstName.value,
         lastName: lastName.value,
@@ -35,19 +36,38 @@ form.addEventListener('submit', (e) => {
         state: state.value,
         resDate: datePicker.value
     }
-
-    axios.post('http://localhost:4000/reservation', resRequest)
-        .then(() => {
-            location.reload()
-            // notSelectableDates.push(datePicker.value)
+    
+    axios.get('http://localhost:4000/reservation')
+    .then(res => {
+        const dataArr = res.data
+        console.log(res.data)
+        const {resDate} = res.data
+        let dateWanted = resRequest.resDate //date that user wants to book
+        let checkData = dataArr.filter(date => date.resdate === dateWanted)
+        console.log(dateWanted + " <- This is the date wanted by the user")
+        console.log(checkData , " This is checkData")
+        if(checkData[0]){
+            console.log("This date has already been selected!")
+            alert("This date has already been selected!")
+        }else{
+            axios.post('http://localhost:4000/reservation', resRequest)
+            .then(() => {
+                location.reload()
+                alert("Reservation submitted successfully!")
+                
+                // notSelectableDates.push(datePicker.value)
+            })
+            .catch(err => console.log('front end error', err))
+    }
         })
-        .catch(err => console.log('front end error', err))
-})
+    })
+    
+
+
 
 function getClientReservations() {
     axios.get('http://localhost:4000/reservation')
         .then(res => {
-            console.log(res.data)
             res.data.forEach(reservation => {
                 const dateDisplayText = createDisplayDate(reservation.resdate)
                 const reservationElem = 

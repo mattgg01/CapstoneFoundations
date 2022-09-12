@@ -26,7 +26,7 @@ module.exports = {
     },
     getClientReservations: (req, res) => {
         sequelize.query(`select * from cc_reservations
-        order by resDate desc;`)
+        order by resDate asc;`)
             .then(dbRes => res.status(200).send(dbRes[0]))
             .catch(err => console.log(err))
 
