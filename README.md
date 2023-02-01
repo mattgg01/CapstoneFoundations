@@ -1,5 +1,5 @@
-# CapstoneFoundations
-DevMountain Foundations Project
+# DevMountain Foundations Capstone Project
+
 RV Park Reservation Form for a fictional RV Park. Created using the JavaScript language with Node.js, React.js, Express, and PostgreSQL. Previously deployed using Heroku.
 
 
